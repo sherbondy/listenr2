@@ -1,0 +1,16 @@
+Hi there, to run listenr, you will need [RubyMotion](http://www.rubymotion.com).
+You will also need to make sure all of the required env files exist by running:
+'''
+source setup_env.sh
+'''
+
+(This file doesn't exist in the repo. See: setup_env_template.sh to get started.)
+
+Do 'bundle install' to install the dependencies.
+
+Now try:
+'''
+rake
+'''
+
+Hooray!

@@ -15,6 +15,7 @@ end
 Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings.
   app.name = 'Listenr'
+  app.version = '0.0.1'
   app.identifier = 'com.unidextrous.listenr'
   app.codesign_certificate = ENV['CODESIGN_CERT']
   app.seed_id = 'TN8DQYA993'
@@ -51,7 +52,9 @@ Motion::Project::App.setup do |app|
     app.testflight.api_token = ENV['TF_API_TOKEN']
     app.testflight.team_token = ENV['TF_TEAM_TOKEN']
     app.testflight.app_token = ENV['TF_APP_TOKEN']
+    app.testflight.distribution_lists = ['listenr_alpha']
     app.testflight.notify = true
     app.testflight.identify_testers = true
+    app.testflight.replace = true
   end
 end

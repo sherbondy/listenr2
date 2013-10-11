@@ -17,6 +17,7 @@ Motion::Project::App.setup do |app|
   app.name = 'Listenr'
   app.identifier = 'com.unidextrous.listenr'
   app.codesign_certificate = ENV['CODESIGN_CERT']
+  app.seed_id = 'TN8DQYA993'
 
   app.frameworks += ['Security']
 

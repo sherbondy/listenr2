@@ -1,7 +1,11 @@
 class AppDelegate
+
+  def tumblr
+    @tumblr ||= Tumblr.instance
+  end
   
   def alertUserInfo
-    @tumblr.client.userInfo(lambda do |info, error|
+    tumblr.client.userInfo(lambda do |info, error|
       if !error
         puts info
         # store these values securely!
@@ -21,11 +25,31 @@ class AppDelegate
     end)
   end
   
-  def application(application, didFinishLaunchingWithOptions:launchOptions)
-    @tumblr = Tumblr.instance
-    @tumblr.login do 
-      alertUserInfo
+  def login_title
+    if tumblr.user.logged_in? then "Logout" else "Login" end
+  end
+  
+  def application(application, didFinishLaunchingWithOptions:launchOptions) 
+    @dashVC = DashboardVC.new
+    @navController = UINavigationController.alloc.initWithRootViewController(@dashVC)
+
+    @login_button = BW::UIBarButtonItem.styled(:plain, login_title) do
+      if tumblr.user.logged_in?
+        tumblr.user.reset
+        @login_button.title = login_title
+      else
+        tumblr.login do
+          alertUserInfo
+          @login_button.title = login_title
+        end
+      end
     end
+
+    @dashVC.navigationItem.rightBarButtonItem = @login_button
+
+    @window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
+    @window.rootViewController = @navController
+    @window.makeKeyAndVisible
 
     puts "hello there..."
     true

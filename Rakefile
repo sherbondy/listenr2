@@ -4,6 +4,7 @@ require 'motion/project/template/ios'
 require 'rubygems'
 require 'motion-testflight'
 require 'motion-cocoapods'
+require 'bubble-wrap'
 
 begin
   require 'bundler'

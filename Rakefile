@@ -55,6 +55,5 @@ Motion::Project::App.setup do |app|
     app.testflight.distribution_lists = ['listenr_alpha']
     app.testflight.notify = true
     app.testflight.identify_testers = true
-    app.testflight.replace = true
   end
 end

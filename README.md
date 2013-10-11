@@ -13,4 +13,6 @@ Now try:
 rake
 '''
 
+To install on your device, make sure to have 'development.mobileprovision' and 'distribution.mobileprovision' files in the root of this directory.
+
 Hooray!

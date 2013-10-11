@@ -12,7 +12,17 @@ end
 
 Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings.
-  app.name = 'listenr'
+  app.name = 'Listenr'
+  app.identifier = 'com.unidextrous.listenr'
+  app.codesign_certificate = ENV['CODESIGN_CERT']
+
+  app.release do
+    app.provisioning_profile = './distribution.mobileprovision'
+  end
+
+  app.development do
+    app.provisioning_profile = './development.mobileprovision'
+  end
 
   app.testflight do
     app.testflight.sdk = 'vendor/TestFlightSDK2'

@@ -16,3 +16,4 @@ nbproject
 .idea
 setup_env.sh
 Gemfile.lock
+*.mobileprovision

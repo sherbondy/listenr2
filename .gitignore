@@ -17,3 +17,5 @@ nbproject
 setup_env.sh
 Gemfile.lock
 *.mobileprovision
+vendor/Pods
+vendor/Podfile.lock

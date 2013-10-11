@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
-
+# Add your dependencies here:
 gem 'rake'
 gem 'motion-testflight'
-# Add your dependencies here:
+gem 'cocoapods'
+gem 'motion-cocoapods'

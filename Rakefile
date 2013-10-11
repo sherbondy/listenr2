@@ -3,6 +3,7 @@ $:.unshift("/Library/RubyMotion/lib")
 require 'motion/project/template/ios'
 require 'rubygems'
 require 'motion-testflight'
+require 'motion-cocoapods'
 
 begin
   require 'bundler'
@@ -15,6 +16,10 @@ Motion::Project::App.setup do |app|
   app.name = 'Listenr'
   app.identifier = 'com.unidextrous.listenr'
   app.codesign_certificate = ENV['CODESIGN_CERT']
+
+  app.pods do
+    pod 'TMTumblrSDK'
+  end
 
   app.release do
     app.provisioning_profile = './distribution.mobileprovision'

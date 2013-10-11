@@ -10,6 +10,7 @@ Do 'bundle install' to install the dependencies.
 
 Now try:
 '''
+rake pod:install
 rake
 '''
 

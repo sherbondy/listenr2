@@ -6,6 +6,8 @@ source setup_env.sh
 
 (This file doesn't exist in the repo. See: setup_env_template.sh to get started.)
 
+Likewise, you will have to provide your Tumblr API keys in 'app/secrets.rb', see: 'app/secrets_template.rb' for the format.
+
 Do 'bundle install' to install the dependencies.
 
 Now try:

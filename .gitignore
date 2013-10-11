@@ -19,3 +19,4 @@ Gemfile.lock
 *.mobileprovision
 vendor/Pods
 vendor/Podfile.lock
+app/secrets.rb

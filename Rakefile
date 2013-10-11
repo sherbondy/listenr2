@@ -20,6 +20,9 @@ Motion::Project::App.setup do |app|
   app.pods do
     pod 'TMTumblrSDK'
   end
+  
+  # explicitly declare dependencies k depends on v
+  app.files_dependencies({})
 
   app.release do
     app.provisioning_profile = './distribution.mobileprovision'
@@ -28,6 +31,11 @@ Motion::Project::App.setup do |app|
   app.development do
     app.provisioning_profile = './development.mobileprovision'
   end
+  
+  app.info_plist['CFBundleURLTypes'] = [
+    { 'CFBundleURLName' => 'com.unidextrous.listenr',
+      'CFBundleURLSchemes' => ['listenr'] }
+  ]
 
   app.testflight do
     app.testflight.sdk = 'vendor/TestFlightSDK2'

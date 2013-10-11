@@ -1,13 +1,12 @@
 class AppDelegate
-  @@tumblr = TMAPIClient.sharedInstance
   
   def alertUserInfo
-    @@tumblr.userInfo(lambda do |info, error|
+    @tumblr.client.userInfo(lambda do |info, error|
       if !error
         puts info
         # store these values securely!
-        puts "Tumblr Token: #{@@tumblr.OAuthToken}"
-        puts "Tumblr Secret: #{@@tumblr.OAuthTokenSecret}"
+        puts "Tumblr Token: #{@tumblr.client.OAuthToken}"
+        puts "Tumblr Secret: #{@tumblr.client.OAuthTokenSecret}"
         
         # glorious tumblr api: http://cocoadocs.org/docsets/TMTumblrSDK/1.0.4/Classes/TMAPIClient.html
         alert = UIAlertView.new
@@ -23,32 +22,16 @@ class AppDelegate
   end
   
   def application(application, didFinishLaunchingWithOptions:launchOptions)
-    @@tumblr.OAuthConsumerKey = Secrets::TUMBLR_OAUTH_KEY
-    @@tumblr.OAuthConsumerSecret = Secrets::TUMBLR_OAUTH_SECRET
-    
-    @user = User.new
-    
-    if @user.logged_in?
-      @@tumblr.OAuthToken = @user.oauth_token
-      @@tumblr.OAuthTokenSecret = @user.oauth_secret
-      alertUserInfo()
-    else
-      @@tumblr.authenticate('listenr', callback: lambda do |error|
-        if !error
-          puts "Logged in!"
-          @user.store_creds(@@tumblr.OAuthToken, @@tumblr.OAuthTokenSecret)
-          alertUserInfo()
-        else
-          puts error.localizedDescription
-        end
-      end)
+    @tumblr = Tumblr.instance
+    @tumblr.login do 
+      alertUserInfo
     end
-    
+
     puts "hello there..."
     true
   end
   
   def application(application, openURL:url, sourceApplication:source, annotation:annotation)
-    return @@tumblr.handleOpenURL(url)
+    return @tumblr.client.handleOpenURL(url)
   end
 end

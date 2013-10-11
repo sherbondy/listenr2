@@ -26,6 +26,7 @@ Motion::Project::App.setup do |app|
   app.pods do
     pod 'TMTumblrSDK'
     pod 'KeychainItemWrapper'
+    pod 'TestFlightSDK'
   end
   
   # explicitly declare dependencies k depends on v
@@ -45,7 +46,7 @@ Motion::Project::App.setup do |app|
   ]
 
   app.testflight do
-    app.testflight.sdk = 'vendor/TestFlightSDK2'
+    app.testflight.sdk = 'vendor/Pods/TestFlightSDK'
     app.testflight.api_token = ENV['TF_API_TOKEN']
     app.testflight.team_token = ENV['TF_TEAM_TOKEN']
     app.testflight.app_token = ENV['TF_APP_TOKEN']

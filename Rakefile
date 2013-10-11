@@ -17,8 +17,15 @@ Motion::Project::App.setup do |app|
   app.identifier = 'com.unidextrous.listenr'
   app.codesign_certificate = ENV['CODESIGN_CERT']
 
+  app.frameworks += ['Security']
+
+  app.entitlements['keychain-access-groups'] = [
+    app.seed_id + '.' + app.identifier
+  ]
+  
   app.pods do
     pod 'TMTumblrSDK'
+    pod 'KeychainItemWrapper'
   end
   
   # explicitly declare dependencies k depends on v

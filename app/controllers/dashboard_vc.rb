@@ -28,6 +28,7 @@ class DashboardVC < UITableViewController
     self.title = 'Dashboard'
     @data = []
     self.tableView.dataSource = self
+    self.tableView.delegate = self
     @tumblr = Tumblr.instance
 
     self.refreshControl = UIRefreshControl.new
@@ -46,6 +47,8 @@ class DashboardVC < UITableViewController
     navBar.translucent = false
   end
 
+  ### dataSource Methods
+
   def tableView(tableView, cellForRowAtIndexPath: indexPath)
     @reuseIdentifier ||= "SONG_CELL"
 
@@ -63,6 +66,11 @@ class DashboardVC < UITableViewController
 
   def tableView(tableView, numberOfRowsInSection: section)
     @data.count
+  end
+
+  ### delegate Methods
+  def tableView(tableView, didSelectRowAtIndexPath:indexPath)
+    tableView.deselectRowAtIndexPath(indexPath, animated: true)
   end
   
 end

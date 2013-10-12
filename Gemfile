@@ -5,3 +5,4 @@ gem 'motion-testflight'
 gem 'cocoapods'
 gem 'motion-cocoapods'
 gem "bubble-wrap", "~> 1.3.0"
+gem 'geomotion'

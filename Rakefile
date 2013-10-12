@@ -4,7 +4,9 @@ require 'motion/project/template/ios'
 require 'rubygems'
 require 'motion-testflight'
 require 'motion-cocoapods'
+require 'bubble-wrap/core'
 require 'bubble-wrap/ui'
+require 'geomotion'
 
 begin
   require 'bundler'
@@ -20,7 +22,7 @@ Motion::Project::App.setup do |app|
   app.codesign_certificate = ENV['CODESIGN_CERT']
   app.seed_id = 'TN8DQYA993'
 
-  app.frameworks += ['Security']
+  app.frameworks += ['Security', 'AVFoundation']
 
   app.entitlements['keychain-access-groups'] = [
     app.seed_id + '.' + app.identifier

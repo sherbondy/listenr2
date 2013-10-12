@@ -1,11 +1,12 @@
 class Tumblr
-  def user
-    @user ||= User.new
-  end
   
   def self.instance
     Dispatch.once { @instance ||= new }
     @instance
+  end
+
+  def user
+    @user ||= User.new
   end
   
   def client
@@ -16,13 +17,16 @@ class Tumblr
     end
     @client
   end
-  
-  def login(&callback)
+
+  def load_credentials
     if user.logged_in?
       client.OAuthToken = user.oauth_token
       client.OAuthTokenSecret = user.oauth_secret
-      callback.call
-    else
+    end
+  end
+  
+  def login(&callback)
+    if !user.logged_in?
       client.authenticate('listenr', callback: lambda do |error|
         if !error
           puts "Logged in!"
@@ -33,6 +37,12 @@ class Tumblr
         end
       end)
     end
+  end
+
+  def logout
+    user.reset
+    client.OAuthToken = nil
+    client.OAuthTokenSecret = nil
   end
   
   

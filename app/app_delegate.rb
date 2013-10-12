@@ -35,7 +35,7 @@ class AppDelegate
 
     @login_button = BW::UIBarButtonItem.styled(:plain, login_title) do
       if tumblr.user.logged_in?
-        tumblr.user.reset
+        tumblr.logout
         @login_button.title = login_title
       else
         tumblr.login do
@@ -44,6 +44,8 @@ class AppDelegate
         end
       end
     end
+
+    tumblr.load_credentials
 
     @dashVC.navigationItem.rightBarButtonItem = @login_button
 

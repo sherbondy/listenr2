@@ -16,7 +16,7 @@ class PlayBarVC < UIViewController
     @play_button = UIButton.buttonWithType(UIButtonTypeCustom)
     @play_button.addTarget(self, action:'toggle_playback:', forControlEvents:UIControlEventTouchUpInside)
 
-    @audio_player = AVPlayer.new
+    @audio_player = AudioPlayer.instance
 
     self
   end

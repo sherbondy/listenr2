@@ -23,6 +23,12 @@ class DashboardVC < UITableViewController
       end)
     end
   end
+
+  def init
+    super
+    @audio_player = AudioPlayer.instance
+    self
+  end
   
   def viewDidLoad
     self.title = 'Dashboard'
@@ -71,6 +77,7 @@ class DashboardVC < UITableViewController
   ### delegate Methods
   def tableView(tableView, didSelectRowAtIndexPath:indexPath)
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    @audio_player.play_song(@data[indexPath.row])
   end
   
 end

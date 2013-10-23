@@ -13,8 +13,12 @@ class AudioPlayer
     url = nil
 
     if song_hash.key?('audio_url')
-      full_url_str =  song_hash['audio_url'] + "?plead=please-dont-download-this-or-our-lawyers-wont-let-us-host-audio"
+      full_url_str =  song_hash['audio_url']
+      if song_hash['audio_url'].include?("www.tumblr.com")
+        full_url_str += "?plead=please-dont-download-this-or-our-lawyers-wont-let-us-host-audio"
+      end
       url = NSURL.URLWithString(full_url_str)
+      puts url.absoluteString
     end
 
     if url

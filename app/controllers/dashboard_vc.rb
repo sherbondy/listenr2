@@ -50,7 +50,11 @@ class DashboardVC < UITableViewController
   def viewWillAppear(animated)
     navBar = self.navigationController.navigationBar
     navBar.barTintColor = UIColor.purpleColor
-    navBar.translucent = false
+    navBar.translucent = true
+    textAttributes = {NSForegroundColorAttributeName: UIColor.whiteColor,
+                      NSBackgroundColorAttributeName: UIColor.whiteColor}
+
+    navBar.titleTextAttributes = textAttributes
   end
 
   ### dataSource Methods

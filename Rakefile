@@ -22,7 +22,9 @@ Motion::Project::App.setup do |app|
   app.codesign_certificate = ENV['CODESIGN_CERT']
   app.seed_id = 'TN8DQYA993'
 
-  app.frameworks += ['Security', 'AVFoundation']
+  app.frameworks += ['Security', 'AVFoundation','AudioToolbox']
+
+  app.background_modes = [:audio]
 
   app.entitlements['keychain-access-groups'] = [
     app.seed_id + '.' + app.identifier

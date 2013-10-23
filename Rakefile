@@ -17,7 +17,7 @@ end
 Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings.
   app.name = 'Listenr'
-  app.version = '0.0.1'
+  app.version = '0.0.2'
   app.identifier = 'com.unidextrous.listenr'
   app.codesign_certificate = ENV['CODESIGN_CERT']
   app.seed_id = 'TN8DQYA993'

@@ -1,6 +1,16 @@
 class AudioPlayer
 
+  def setup_audio_session
+    UIApplication.sharedApplication.beginReceivingRemoteControlEvents
+    AVAudioSession.sharedInstance.setDelegate(self)
+    AVAudioSession.sharedInstance.setCategory(AVAudioSessionCategoryPlayback, error:nil)
+    AVAudioSession.sharedInstance.setActive(true, error:nil)
+  end
+
 	def player
+    if !@player
+      setup_audio_session()
+    end
     @player ||= AVPlayer.new
   end
 

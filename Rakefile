@@ -25,6 +25,8 @@ Motion::Project::App.setup do |app|
   app.frameworks += ['Security', 'AVFoundation','AudioToolbox']
 
   app.background_modes = [:audio]
+  
+  app.info_plist['UIBackgroundModes'] = ['audio'] 
 
   app.entitlements['keychain-access-groups'] = [
     app.seed_id + '.' + app.identifier
